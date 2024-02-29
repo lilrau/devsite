@@ -1,6 +1,3 @@
-import { NextResponse } from 'next/server';
-import { get } from '@vercel/edge-config';
-
 var before = document.getElementById("before");
 var liner = document.getElementById("liner");
 var command = document.getElementById("typer"); 
@@ -13,14 +10,19 @@ var pw = false;
 let pwd = false;
 var commands = [];
 
-var gittoken = '';
-export const config = { matcher: '/welcome' };
-export async function middleware() {
-  const token = await get('token');
-  return NextResponse.json(token);
+async function getToken() {
+  try {
+    const response = await fetch('/token');
+    const tokenData = await response.json();
+    const token = tokenData.token; //
+    return token;
+  } catch (error) {
+    console.error('Error getting token:', error);
+    return null;
+  }
 }
 
-gittoken = middleware();
+const gittoken = await getToken();
 
 setTimeout(function() {
   loopLines(banner, "", 80);
