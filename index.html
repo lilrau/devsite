@@ -1,0 +1,60 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lilrau dev</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.cdnfonts.com/css/cascadia-code" rel="stylesheet">
+ </head>
+
+ <body>
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/9d2affc56d.js" crossorigin="anonymous"></script>
+
+    <header>
+        <img src="assets/prof_icon.jpg" alt="lilrau" class="icon">
+    </header>
+
+    <nav>
+        <ul>
+            <li class="card"><a href="https://wa.me/5516996246365/"><i class="fa-brands fa-whatsapp" id="social-icon"></i></a></li>
+            <li class="card"><a href="https://www.linkedin.com/in/lilrau/"><i class="fa-brands fa-linkedin-in" id="social-icon"></i></a></li>
+            <li class="card"><a href="https://github.com/lilrau"><i class="fa-brands fa-github" id="social-icon"></i></a></li>
+            <li class="card"><a href="https://discord.com/users/246318073815105547"><i class="fa-brands fa-discord" id="social-icon"></i></a></li>
+        </ul>
+    </nav>
+
+    <section class="title">
+        <h1>Raul Souza</h1>
+        <span class="dev">lilrau dev</span>
+    </section>
+
+    <span class="description">Systems Analysis and Development Student at UTFPR</span>
+
+    <div class="tab"><i class="fa-solid fa-terminal"></i>../lilrau/dev</div>
+
+    <div id="terminal-box">
+        <div id="terminal">
+            <a id="before"></a>
+          </div>
+          <div id="command" onclick="$('texter').focus();">
+            <textarea
+              type="text"
+              id="texter"
+              onkeyup="typeIt(this, event)"
+              onkeydown="typeIt(this, event); 
+                         moveIt(this.value.length, event)"
+              onkeypress="typeIt(this, event);"
+              autofocus
+            ></textarea>
+            <div id="liner">
+              <span id="typer"></span><b class="cursor" id="cursor">█</b>
+            </div>
+          </div>
+    </div>
+      <script src="caret.js"></script>
+      <script src="main.js"></script>
+      <script src="commands.js"></script>
+ </body>
+ </html>

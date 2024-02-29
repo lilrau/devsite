@@ -1,0 +1,284 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Cascadia Code', sans-serif;
+    color: white;
+}
+
+body {
+    display: grid;
+    background: black;
+    align-items: center;
+    justify-content: center;
+    place-items: center;
+}
+
+header {
+    text-align: center;
+}
+
+ul {
+    padding: 0;
+    padding-top: 2vh;
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+}
+
+li {
+    padding: 0.5vw;
+    font-size: 30px;
+}
+
+h1 {
+    font-weight: normal;
+    margin-bottom: 0.3rem;
+}
+
+.dev {
+    color: rgb(100, 100, 100);
+}
+
+.description {
+    padding-top: 2vh;
+    padding-bottom: 4vh;
+    color: rgb(201, 201, 201);
+    text-align: center;
+}
+
+.title {
+    text-align: center;
+}
+
+.icon {
+    padding-top: 10px;
+    border-radius: 50%;
+    width: 150px;
+}
+
+.card {
+    text-align: center;
+    background: rgb(26, 26, 26);
+    width: 64px;
+    border-radius: 10%;
+    position: relative;
+    transition: background 0.1s;
+}
+
+.card:hover {
+    --active: 1;
+}
+  
+.card:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at calc(var(--x) * 1px) calc(var(--y) * 1px), hsl(0 0% 100% / 0.15), transparent 15vmin);
+    background-attachment: fixed;
+    opacity: var(--active, 0);
+    transition: opacity 0.2s;
+    pointer-events: none;
+}
+  
+.card:before {
+    content: "";
+    border-radius: 10%;
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at calc(var(--x) * 1px) calc(var(--y) * 1px), hsl(0 0% 100% / 0.5), transparent 15vmin),
+      transparent;
+    background-attachment: fixed;
+    pointer-events: none;
+    mask:
+      linear-gradient(white, white) 50% 0 / 100% 3px no-repeat,
+      linear-gradient(white, white) 50% 100% / 100% 3px no-repeat,
+      linear-gradient(white, white) 0 50% / 3px 100% no-repeat,
+      linear-gradient(white, white) 100% 50% / 3px 100% no-repeat;
+}
+
+.tab {
+    margin-right: 49vw;
+    border-radius: 15px 15px 0 0;
+    background-color: rgb(26, 26, 26);
+    font-size: 1.7vh;
+    width: 11vw;
+    height: 4vh;
+    padding-top: 10px;
+    padding-left: 15px;
+}
+
+.fa-terminal {
+    font-size: 13px;
+    padding-right: 9px;
+}
+
+#terminal-box {
+    padding: 10px;
+    border-radius: 0 15px 15px 15px;
+    background-color: rgb(26, 26, 26);
+    width: 60vw;
+    min-height: 50vh;
+    text-align: left;
+    place-items: left;
+    align-items: start;
+    justify-content: start;
+}
+
+::selection {
+    color: #211830;
+    background-color: #bd93f9;
+}
+::-moz-selection {
+    color: #211830;
+    background-color: #bd93f9;
+}
+textarea {
+    left: -1000px;
+    position: absolute;
+}
+
+b {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* Cursor Start */
+
+.cursor {
+    font-size: 12px;
+    color: #bd93f9;
+    background-color: #bd93f9;
+    position: relative;
+    opacity: 1;
+    height: 1.5em;
+    width: 10px;
+    max-width: 10px;
+    transform: translateY(4px);
+    overflow: hidden;
+    text-indent: -5px;
+    display: inline-block;
+    text-decoration: blink;
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+
+#command {
+    cursor: text;
+    height: 50px;
+    color: #22e4c3;
+}
+
+#liner {
+    line-height: 1.3em;
+    margin-top: -2px;
+    animation: show 0.5s ease forwards;
+    animation-delay: 1.2s;
+    opacity: 0;
+}
+
+#liner::before {
+    color: #bd93f9;
+    content: "user@lilrau.dev:~$";
+    text-align: left;
+}
+
+.no-animation {
+    color: #bd93f9;
+    text-align: left;
+}
+
+@keyframes show {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+}
+
+/* Cursor End */
+
+p {
+    display: block;
+    line-height: 1.3em;
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0;
+    letter-spacing: 0.05em;
+    animation: typing 0.5s steps(30, end);
+}
+
+.no-animation {
+    animation: typing 0 steps(30, end);
+}
+
+.margin {
+    margin-left: 20px;
+}
+
+@keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+}
+
+.index1 {
+    color: #bd93f9;
+}
+
+.index2 {
+    color: #ffb86c;
+}
+
+.color2 {
+    color: #ffb86c;
+}
+
+.command {
+    color: #22e4c3;
+    text-shadow: 0 0 5px #22e4c3; 
+}
+
+.error {
+    color: #B89076;
+}
+
+.white {
+    color: #fff;
+}
+
+.inherit,
+.terminal-link {
+    color: #9C8394;
+}
+
+.terminal-link {
+    text-decoration: inherit;
+}
+
+.terminal-link:hover {
+    background: #22e4c3;
+    color: #211830;
+}
+
+.terminal-link:focus {
+    outline: 0;
+}
+
+.ascii {
+    font-family:monospace;
+
+}
