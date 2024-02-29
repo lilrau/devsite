@@ -1,15 +1,34 @@
+import { NextResponse } from 'next/server';
+import { get } from '@vercel/edge-config';
+
 var before = document.getElementById("before");
 var liner = document.getElementById("liner");
 var command = document.getElementById("typer"); 
 var textarea = document.getElementById("texter"); 
 var terminal = document.getElementById("terminal");
 var terminal_box = document.getElementById("terminal-box");
-var token = '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'; // This token has no danger, it has read-only access to my repositories.
+var gittoken = '';
 
 var git = 0;
 var pw = false;
 let pwd = false;
 var commands = [];
+
+export const config = { matcher: '/get-token' };
+
+export async function middleware() {
+  const token = await get('token');
+  return NextResponse.json({ token });
+}
+
+fetch('/get-token')
+  .then(response => response.json())
+  .then(data => {
+    const token = data.token;
+    console.log('Token:', token);
+    gittoken = token;
+  })
+  .catch(error => console.error('Error getting token:', error));
 
 setTimeout(function() {
   loopLines(banner, "", 80);
@@ -155,7 +174,7 @@ async function getRepositories(username) {
   try {
     const response = await fetch(`https://api.github.com/users/${username}/repos`, {
       headers: {
-        Authorization: `token ${token}`
+        Authorization: `token ${gittoken}`
       }
     });
     if (!response.ok) {
@@ -173,7 +192,7 @@ async function getLanguages(repo) {
   try {
     const response = await fetch(repo.languages_url, {
       headers: {
-        Authorization: `token ${token}`
+        Authorization: `token ${gittoken}`
       }
     });
     if (!response.ok) {
@@ -191,7 +210,7 @@ async function getDescription(repo) {
   try {
     const response = await fetch(repo.url, {
       headers: {
-        Authorization: `token ${token}`
+        Authorization: `token ${gittoken}`
       }
     });
     if (!response.ok) {
