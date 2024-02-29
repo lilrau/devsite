@@ -4,7 +4,6 @@ var command = document.getElementById("typer");
 var textarea = document.getElementById("texter"); 
 var terminal = document.getElementById("terminal");
 var terminal_box = document.getElementById("terminal-box");
-var gittoken = process.env.gittoken;
 
 var git = 0;
 var pw = false;
