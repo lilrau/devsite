@@ -21,7 +21,7 @@ about = [
     'Yo! I am Raul, a 21y student developer from Brazil.',
     'I studied 5 semesters of Computer Science, but I chose to switch courses.',
     'I am currently studying Systems Analysis and Development at UTFPR (Universidade Tecnológica Federal do Paraná).',
-    'At this time, I am seeking to improve my skills and learn more about the technologies that are in demand in the market.',
+    'At this time, I am seeking to improve my skills and learn about the technologies that are in demand in the market.',
     'I am also looking for opportunities to work, internship and collaborate on projects.',
     "<br>"
 ]
