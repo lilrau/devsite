@@ -18,9 +18,9 @@ help = [
 
 about = [
     "<br>",
-    'Yo! I am Raul, a 21y student developer from Brazil.',
-    'I studied 5 semesters of Computer Science, but I chose to switch courses.',
-    'I am currently studying Systems Analysis and Development at UTFPR (Universidade Tecnológica Federal do Paraná).',
+    'Yo! I am <span class="command">Raul</span>, a 21y student developer from Brazil.',
+    'I studied 5 semesters of <span class="command">Computer Science</span>, but I chose to switch courses.',
+    'I am currently studying <span class="command">Systems Analysis and Development</span> at UTFPR (Universidade Tecnológica Federal do Paraná).',
     'At this time, I am seeking to improve my skills and learn about the technologies that are in demand in the market.',
     'I am also looking for opportunities to work, internship and collaborate on projects.',
     "<br>"

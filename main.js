@@ -3,6 +3,7 @@ var liner = document.getElementById("liner");
 var command = document.getElementById("typer"); 
 var textarea = document.getElementById("texter"); 
 var terminal = document.getElementById("terminal");
+var terminal_box = document.getElementById("terminal-box");
 
 var git = 0;
 var pw = false;
@@ -154,7 +155,7 @@ function addLine(text, style, time) {
 
     before.parentNode.insertBefore(next, before);
 
-    window.scrollTo(0, document.body.offsetHeight);
+    terminal_box.scrollTop = terminal_box.scrollHeight;
   }, time);
 }
 

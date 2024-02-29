@@ -34,7 +34,7 @@ li {
 
 h1 {
     font-weight: normal;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.1rem;
 }
 
 .dev {
@@ -42,8 +42,8 @@ h1 {
 }
 
 .description {
-    padding-top: 2vh;
-    padding-bottom: 4vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
     color: rgb(201, 201, 201);
     text-align: center;
 }
@@ -100,6 +100,12 @@ h1 {
       linear-gradient(white, white) 100% 50% / 3px 100% no-repeat;
 }
 
+.stacks {
+    padding-top: 8px;
+    font-size: 32px;
+    padding-bottom: 3vh;
+}
+
 .tab {
     margin-right: 49vw;
     border-radius: 15px 15px 0 0;
@@ -126,10 +132,12 @@ h1 {
     background-color: rgb(26, 26, 26);
     width: 60vw;
     min-height: 50vh;
+    max-height: 50vh;
     text-align: left;
     place-items: left;
     align-items: start;
     justify-content: start;
+    overflow-y: auto;
 }
 
 ::selection {
