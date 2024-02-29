@@ -7,28 +7,20 @@ var command = document.getElementById("typer");
 var textarea = document.getElementById("texter"); 
 var terminal = document.getElementById("terminal");
 var terminal_box = document.getElementById("terminal-box");
-var gittoken = '';
 
 var git = 0;
 var pw = false;
 let pwd = false;
 var commands = [];
 
-export const config = { matcher: '/get-token' };
-
+var gittoken = '';
+export const config = { matcher: '/welcome' };
 export async function middleware() {
   const token = await get('token');
-  return NextResponse.json({ token });
+  return NextResponse.json(token);
 }
 
-fetch('/get-token')
-  .then(response => response.json())
-  .then(data => {
-    const token = data.token;
-    console.log('Token:', token);
-    gittoken = token;
-  })
-  .catch(error => console.error('Error getting token:', error));
+gittoken = middleware();
 
 setTimeout(function() {
   loopLines(banner, "", 80);
