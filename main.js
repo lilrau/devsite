@@ -4,7 +4,19 @@ var command = document.getElementById("typer");
 var textarea = document.getElementById("texter"); 
 var terminal = document.getElementById("terminal");
 var terminal_box = document.getElementById("terminal-box");
-const gittoken = process.env.GITTOKEN;
+
+// this key has not danger, it is a read-only key
+//thats why I use a dumb way to encrypt it
+var gittoken = 'hiq`G[dYdvovlhVr:prg9gDSFPT9k:M7UK3vk32E';
+
+function decryptToken(encryptedToken) {
+  let decryptedToken = "";
+  for (let i = 0; i < encryptedToken.length; i++) {
+      let charCode = encryptedToken.charCodeAt(i) - 1;
+      decryptedToken += String.fromCharCode(charCode);
+  }
+  return decryptedToken;
+}
 
 var git = 0;
 var pw = false;
@@ -155,7 +167,7 @@ async function getRepositories(username) {
   try {
     const response = await fetch(`https://api.github.com/users/${username}/repos`, {
       headers: {
-        Authorization: `token ${gittoken}`
+        Authorization: `token ${decryptToken(gittoken)}`
       }
     });
     if (!response.ok) {
@@ -173,7 +185,7 @@ async function getLanguages(repo) {
   try {
     const response = await fetch(repo.languages_url, {
       headers: {
-        Authorization: `token ${gittoken}`
+        Authorization: `token ${decryptToken(gittoken)}`
       }
     });
     if (!response.ok) {
@@ -191,7 +203,7 @@ async function getDescription(repo) {
   try {
     const response = await fetch(repo.url, {
       headers: {
-        Authorization: `token ${gittoken}`
+        Authorization: `token ${decryptToken(gittoken)}`
       }
     });
     if (!response.ok) {
