@@ -26,10 +26,7 @@ jobs:
 
       - name: Deploy website
         env:
-          GITTOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITTOKEN: ${{ secrets.GITTOKEN }}
         run: |
           sed -i "s/const gittoken = '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';/const gittoken = '${{ secrets.GITTOKEN }}';/" main.js
-          # Replace 'your_script.js' with the path to your JavaScript file
-          # This command replaces the token placeholder in your script with the actual secret value
-          # Make sure to adjust the sed command based on your script structure
-          # You might need to use a different approach if your script structure is different
+
