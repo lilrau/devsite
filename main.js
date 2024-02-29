@@ -4,25 +4,12 @@ var command = document.getElementById("typer");
 var textarea = document.getElementById("texter"); 
 var terminal = document.getElementById("terminal");
 var terminal_box = document.getElementById("terminal-box");
+var gittoken = process.env.gittoken;
 
 var git = 0;
 var pw = false;
 let pwd = false;
 var commands = [];
-
-async function getToken() {
-  try {
-    const response = await fetch('/token');
-    const tokenData = await response.json();
-    const token = tokenData.token; //
-    return token;
-  } catch (error) {
-    console.error('Error getting token:', error);
-    return null;
-  }
-}
-
-const gittoken = await getToken();
 
 setTimeout(function() {
   loopLines(banner, "", 80);
