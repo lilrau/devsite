@@ -4,6 +4,7 @@ var command = document.getElementById("typer");
 var textarea = document.getElementById("texter"); 
 var terminal = document.getElementById("terminal");
 var terminal_box = document.getElementById("terminal-box");
+var token = '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'; // This token has no danger, it has read-only access to my repositories.
 
 var git = 0;
 var pw = false;
@@ -17,7 +18,6 @@ setTimeout(function() {
 
 window.addEventListener("keyup", enterKey);
 
-//init
 textarea.value = "";
 command.innerHTML = textarea.value;
 
@@ -25,29 +25,7 @@ function enterKey(e) {
   if (e.keyCode == 181) {
     document.location.reload(true);
   }
-  if (pw) {
-    let et = "*";
-    let w = textarea.value.length;
-    command.innerHTML = et.repeat(w);
-    if (textarea.value === password) {
-      pwd = true;
-    }
-    if (pwd && e.keyCode == 13) {
-      loopLines(secret, "color2 margin", 120);
-      command.innerHTML = "";
-      textarea.value = "";
-      pwd = false;
-      pw = false;
-      liner.classList.remove("password");
-    } else if (e.keyCode == 13) {
-      addLine("Wrong password", "error", 0);
-      command.innerHTML = "";
-      textarea.value = "";
-      pw = false;
-      liner.classList.remove("password");
-    }
-  } else {
-    if (e.keyCode == 13) {
+  if (e.keyCode == 13) {
       commands.push(command.innerHTML);
       git = commands.length;
       addLine("user@lilrau.dev:~$ " + command.innerHTML, "no-animation", 0);
@@ -70,9 +48,8 @@ function enterKey(e) {
       command.innerHTML = textarea.value;
     }
   }
-}
 
-function commander(cmd) {
+async function commander(cmd) {
   switch (cmd.toLowerCase()) {
     case "help":
       loopLines(help, "color2 margin", 80);
@@ -93,7 +70,16 @@ function commander(cmd) {
       loopLines(social, "color2 margin", 80);
       break;
     case "projects":
-      loopLines(projects, "color2 margin", 80);
+      try {
+        const repositories = await getRepositories("lilrau");
+        if (repositories.length === 0) {
+          addLine("No repo found.", "color2", 80);
+        } else {
+          printRepositories(repositories);
+        }
+      } catch (error) {
+        addLine("Error. Can't get acess Github repos.", "error", 100);
+      }
       break;
     case "history":
       addLine("<br>", "", 0);
@@ -113,7 +99,6 @@ function commander(cmd) {
     case "banner":
       loopLines(banner, "", 80);
       break;
-    // socials
     case "linkedin":
       addLine("Opening LinkedIn...", "color2", 0);
       newTab(linkedin);
@@ -147,8 +132,9 @@ function addLine(text, style, time) {
     } else {
       t += text.charAt(i);
     }
-  }
-  setTimeout(function() {
+}
+
+setTimeout(function() {
     var next = document.createElement("p");
     next.innerHTML = t;
     next.className = style;
@@ -163,4 +149,73 @@ function loopLines(name, style, time) {
   name.forEach(function(item, index) {
     addLine(item, style, index * time);
   });
+}
+
+async function getRepositories(username) {
+  try {
+    const response = await fetch(`https://api.github.com/users/${username}/repos`, {
+      headers: {
+        Authorization: `token ${token}`
+      }
+    });
+    if (!response.ok) {
+      throw new Error('Error searching repositories.');
+    }
+    const repositories = await response.json();
+    return repositories;
+  } catch (error) {
+    console.error('Erro:', error);
+    return [];
+  }
+}
+
+async function getLanguages(repo) {
+  try {
+    const response = await fetch(repo.languages_url, {
+      headers: {
+        Authorization: `token ${token}`
+      }
+    });
+    if (!response.ok) {
+      throw new Error('Error searching repository languages.');
+    }
+    const languagesData = await response.json();
+    return languagesData;
+  } catch (error) {
+    console.error('Error:', error);
+    return {};
+  }
+}
+
+async function getDescription(repo) {
+  try {
+    const response = await fetch(repo.url, {
+      headers: {
+        Authorization: `token ${token}`
+      }
+    });
+    if (!response.ok) {
+      throw new Error('Error searching repository info.');
+    }
+    const repoData = await response.json();
+    return repoData.description;
+  } catch (error) {
+    console.error('Error:', error);
+    return '';
+  }
+}
+
+async function printRepositories(repositories) {
+  for (const repo of repositories) {
+    try {
+      const languagesData = await getLanguages(repo);
+      const languages = Object.keys(languagesData).join(' | ');
+
+      const description = await getDescription(repo);
+      
+      addLine(`<br><span class="repo-emote">🔗</span><a href="${repo.html_url}" class="repo" target="_blank">${repo.name}</a><br><span class="langs">${languages}</span><br>${description}<br>`, "color2", 80);
+    } catch (error) {
+      addLine(`Erro searching repo info: ${repo.name}.`, "error", 100);
+    }
+  }
 }

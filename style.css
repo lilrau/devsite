@@ -124,6 +124,9 @@ h1 {
 
 #terminal {
     font-size: 15px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
 }
 
 #terminal-box {
@@ -293,4 +296,18 @@ p {
 .ascii {
     font-family:monospace;
 
+}
+
+.repo {
+    color: #bd93f9;
+    text-shadow: 0 0 5px #bd93f983; 
+}
+
+.langs {
+    color: #22e4c3;
+}
+
+.repo,
+.repo-emote {
+    font-size: 20px;
 }

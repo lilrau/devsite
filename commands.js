@@ -34,12 +34,6 @@ social = [
     "<br>"
 ]
 
-projects = [
-    "<br>",
-    'not yet',
-    "<br>"
-]
-
 banner = [
     '<span class="index1">DevShell.</span>',
     '<span class="index2">Lilrau actually not a corporation. No rights reserved.</span>',
