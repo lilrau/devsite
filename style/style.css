@@ -4,6 +4,20 @@
     color: white;
 }
 
+@media screen and (max-width: 600px) {
+    #terminal,
+    #terminal-box,
+    .tab {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .mobile-warn {
+        display: none;
+    }
+}
+
 body {
     display: grid;
     background: black;
@@ -104,6 +118,12 @@ h1 {
     padding-top: 8px;
     font-size: 32px;
     padding-bottom: 3vh;
+}
+
+.mobile-warn {
+    padding-top: 30px;
+    text-align: center;
+    color: rgb(100, 100, 100);
 }
 
 .tab {
